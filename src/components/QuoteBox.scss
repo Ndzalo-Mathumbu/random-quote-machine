@@ -1,4 +1,8 @@
-$blue-primary: blue;
+:root {
+  --blue-primary: pink;
+  --back-primary: black;
+}
+// $blue-primary: blue;
 $back-primary: black;
 $white-primary: rgb(255, 255, 255);
 $opposite-corner-radius: 40px;
@@ -9,7 +13,11 @@ $opposite-corner-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(193deg, $blue-primary, $back-primary 90%);
+  background: linear-gradient(
+    193deg,
+    var(--blue-primary),
+    var(--back-primary) 95%
+  );
   //   background-color: $blue-primary;
 }
 @mixin direction($direction) {
@@ -27,7 +35,7 @@ body {
 }
 
 .quote-box {
-  background-color: $primary;
+  background-color: $white-primary;
   border-top-right-radius: $opposite-corner-radius;
   border-bottom-left-radius: $opposite-corner-radius;
   margin: 1rem;
@@ -39,19 +47,20 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   p {
-    color: $white-primary;
+    color: $back-primary;
     text-align: center;
     margin-bottom: 3rem;
+    font-weight: bold;
   }
 
   h4 {
     position: relative;
     font-size: small;
-    font-weight: bold;
+    font-weight: bolder;
     margin-bottom: 1.5%;
     left: 38%;
     top: 130%;
-    color: $white-primary;
+    color: $back-primary;
   }
   .socials {
     position: relative;
@@ -74,7 +83,7 @@ body {
     position: relative;
     width: 30%;
     left: 33%;
-    background-color: $blue-primary;
+    background: var(--back-primary);
     border: none;
     padding: 0.5rem 1.2rem;
     border-radius: 5px;
