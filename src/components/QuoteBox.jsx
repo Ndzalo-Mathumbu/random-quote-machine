@@ -85,4 +85,5 @@ const QUOTEBOX = function () {
     </div>
   );
 };
+
 export default QUOTEBOX;

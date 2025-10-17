@@ -1,5 +1,7 @@
 import React from "react";
 import QUOTEBOX from "./components/QuoteBox";
+import COPYRIGHT from "/Users/ndzalonk/random-quote-machine/src/components/CopyRight.jsx";
+import PAGETITLE from "/Users/ndzalonk/random-quote-machine/src/components/PageTitle.jsx";
 import "./components/QuoteBox.scss";
 /* 
 App.jsx Structure Plan:
@@ -11,9 +13,13 @@ App.jsx Structure Plan:
 
 function App() {
   return (
-    <div className="app-bg">
-      <QUOTEBOX />
-    </div>
+    <>
+      <PAGETITLE />
+      <COPYRIGHT />
+      <div className="app-bg">
+        <QUOTEBOX />
+      </div>
+    </>
   );
 }
 
