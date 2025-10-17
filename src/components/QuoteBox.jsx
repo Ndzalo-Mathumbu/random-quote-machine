@@ -1,8 +1,12 @@
 import React from "react";
 import "./QuoteBox.scss";
 import $ from "jquery";
+import { useState } from "react";
+import privacy from "/Users/ndzalonk/random-quote-machine/src/private.js";
 
 const QUOTEBOX = function () {
+  const [quoteText, setQuoteText] = useState("");
+  const [authorText, setAuthorText] = useState("");
   const generateRandomColor = () => {
     const color1 = Math.floor(Math.random() * 255);
     const color2 = Math.floor(Math.random() * 255);
@@ -13,26 +17,48 @@ const QUOTEBOX = function () {
     const genRandomNumBetweenPickLowestPickHighest =
       Math.floor(Math.random() * (pickHighestNumber - pickLowestNumber + 1)) +
       pickLowestNumber;
-
     const rgbNum2 = `rgb(${pickLowestNumber}, ${pickHighestNumber}, ${genRandomNumBetweenPickLowestPickHighest})`;
+
     // const b = Math.max(color1, 0, 255);
     $("html").css("--blue-primary", rgbNum1);
     $("html").css("--back-primary", rgbNum2);
-    console.log(rgbNum1, rgbNum2);
   };
 
+  const fetchQuote = async function () {
+    try {
+      setQuoteText("");
+      setAuthorText("");
+      const response = await fetch(privacy.api, {
+        method: "GET",
+        headers: privacy.header,
+      });
+      const responseData = await response.json();
+      const [quoteOBJ] = responseData;
+      const { quote, author } = quoteOBJ;
+      setQuoteText(quote);
+      setAuthorText(`~${author}`);
+    } catch (error) {
+      console.error(error);
+      console.log("trash happend 💥");
+      $(".clockwiseLoader").css("display", "none");
+    }
+  };
+
+  function init() {
+    setQuoteText("");
+    setAuthorText("");
+    generateRandomColor();
+    fetchQuote();
+  }
   return (
     <div className="quote-box container">
-      <p>
-        A "quote" can be the repetition of a phrase or passage from a speech or
-        text, a formal price estimate from a business, or a short, memorable
-        saying used for inspiration or wit. . Lorem ipsum, dolor sit amet
-        consectetur adipisicing elit. Consequatur earum error, atque magnam
-        tempore provident quisquam culpa ab, beatae ducimus in aliquid deleniti.
-        Quis fuga id error. Quo, pariatur inventore.
-      </p>
-      <h4>~ Ndzalo NK Mathumbu</h4>
-      <button onClick={generateRandomColor}>New Quote</button>
+      {!quoteText ? (
+        <div className="clockwiseLoader">Finding Quote</div>
+      ) : (
+        <p>{quoteText}</p>
+      )}
+      <h4>{authorText}</h4>
+      <button onClick={init}>New Quote</button>
       <div className="socials container">
         <a href="#">
           <img src="./twitter.png" className="img-fluid" alt="twitter" />

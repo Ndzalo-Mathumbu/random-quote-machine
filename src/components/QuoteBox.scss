@@ -96,6 +96,29 @@ body {
   }
 }
 
+.clockwiseLoader {
+  background-color: var(--blue-primary);
+  width: 55px;
+  height: 55px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  animation: spin 1s linear infinite;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white-primary;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 576px) {
   .quote-box p {
     font-size: 0.9rem;
