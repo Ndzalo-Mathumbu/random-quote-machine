@@ -1,12 +1,15 @@
 import React from "react";
 import "./QuoteBox.scss";
 import $ from "jquery";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import privacy from "/Users/ndzalonk/random-quote-machine/src/private.js";
 
 const QUOTEBOX = function () {
   const [quoteText, setQuoteText] = useState("");
   const [authorText, setAuthorText] = useState("");
+  useEffect(() => {
+    init();
+  }, []);
   const generateRandomColor = () => {
     const color1 = Math.floor(Math.random() * 255);
     const color2 = Math.floor(Math.random() * 255);
@@ -40,6 +43,7 @@ const QUOTEBOX = function () {
     } catch (error) {
       console.error(error);
       console.log("trash happend 💥");
+      alert("Trash happend 💥");
       $(".clockwiseLoader").css("display", "none");
     }
   };
@@ -53,12 +57,16 @@ const QUOTEBOX = function () {
   return (
     <div className="quote-box container">
       {!quoteText ? (
-        <div className="clockwiseLoader">Finding Quote</div>
+        <div className="clockwiseLoader"></div>
       ) : (
-        <p>{quoteText}</p>
+        <p>{`"${quoteText}"`}</p>
       )}
-      <h4>{authorText}</h4>
-      <button onClick={init}>New Quote</button>
+      <div className="authorBTN d-flex flex-column align-items-center">
+        <h4 className="fs-6 fs-sm-5 fs-md-3 text-center">{authorText}</h4>
+        <button className="btn w-100 w-md-auto" onClick={init}>
+          New Quote
+        </button>
+      </div>
       <div className="socials container">
         <a href="#">
           <img src="./twitter.png" className="img-fluid" alt="twitter" />
@@ -77,5 +85,4 @@ const QUOTEBOX = function () {
     </div>
   );
 };
-
 export default QUOTEBOX;
