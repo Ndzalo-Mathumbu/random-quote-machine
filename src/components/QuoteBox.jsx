@@ -3,7 +3,9 @@ import "./QuoteBox.scss";
 import $ from "jquery";
 import { useState, useEffect } from "react";
 import privacy from "/Users/ndzalonk/random-quote-machine/src/private.js";
-
+import x from "/Users/ndzalonk/random-quote-machine/twitter.png";
+import IG from "/Users/ndzalonk/random-quote-machine/instagram1.png";
+import FB from "/Users/ndzalonk/random-quote-machine/facebook icon.f3e79ada.png";
 const QUOTEBOX = function () {
   const [quoteText, setQuoteText] = useState("");
   const [authorText, setAuthorText] = useState("");
@@ -55,31 +57,32 @@ const QUOTEBOX = function () {
     fetchQuote();
   }
   return (
-    <div className="quote-box container">
+    <div className="quote-box container" id="quote-box">
       {!quoteText ? (
-        <div className="clockwiseLoader"></div>
+        <div className="clockwiseLoader" id="new-quote"></div>
       ) : (
         <p>{`"${quoteText}"`}</p>
       )}
-      <div className="authorBTN d-flex flex-column align-items-center">
-        <h4 className="fs-6 fs-sm-5 fs-md-3 text-center">{authorText}</h4>
-        <button className="btn w-100 w-md-auto" onClick={init}>
+      <div
+        className="authorBTN d-flex flex-column align-items-center"
+        id="text"
+      >
+        <h4 className="fs-6 fs-sm-5 fs-md-3 text-center" id="author">
+          {authorText}
+        </h4>
+        <button className="btn w-100 w-md-auto " id="new-quote" onClick={init}>
           New Quote
         </button>
       </div>
       <div className="socials container">
-        <a href="#">
-          <img src="./twitter.png" className="img-fluid" alt="twitter" />
+        <a href="twitter.com/intent/tweet">
+          <img src={x} className="img-fluid" id="tweet-quote" alt="twitter" />
         </a>
         <a href="#">
-          <img src="./instagram.png" className="img-fluid" alt="instagram" />
+          <img src={IG} className="img-fluid" alt="instagram" />
         </a>
         <a href="#">
-          <img
-            src="./facebook icon.f3e79ada.png"
-            className="img-fluid"
-            alt="facebook"
-          />
+          <img src={FB} className="img-fluid" alt="facebook" />
         </a>
       </div>
     </div>
