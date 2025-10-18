@@ -61,23 +61,30 @@ const QUOTEBOX = function () {
       {!quoteText ? (
         <div className="clockwiseLoader" id="new-quote"></div>
       ) : (
-        <p>{`"${quoteText}"`}</p>
+        <p id="text">{`"${quoteText}"`}</p>
       )}
-      <div
-        className="authorBTN d-flex flex-column align-items-center"
-        id="text"
-      >
+
+      <div className="authorBTN d-flex flex-column align-items-center">
         <h4 className="fs-6 fs-sm-5 fs-md-3 text-center" id="author">
           {authorText}
         </h4>
-        <button className="btn w-100 w-md-auto " id="new-quote" onClick={init}>
+        <button className="btn w-100 w-md-auto" id="new-quote" onClick={init}>
           New Quote
         </button>
       </div>
+
       <div className="socials container">
-        <a href="twitter.com/intent/tweet">
-          <img src={x} className="img-fluid" id="tweet-quote" alt="twitter" />
+        <a
+          id="tweet-quote"
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            `"${quoteText}" — ${authorText}`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={x} className="img-fluid" alt="twitter" />
         </a>
+
         <a href="#">
           <img src={IG} className="img-fluid" alt="instagram" />
         </a>
