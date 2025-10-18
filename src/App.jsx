@@ -1,6 +1,7 @@
 import React from "react";
 import QUOTEBOX from "./components/QuoteBox";
-import COPYRIGHT from "/Users/ndzalonk/random-quote-machine/src/components/CopyRight.jsx";
+import CopyRight from "./components/CopyRight.jsx";
+
 import PAGETITLE from "/Users/ndzalonk/random-quote-machine/src/components/PageTitle.jsx";
 import "./components/QuoteBox.scss";
 /* 
@@ -15,7 +16,7 @@ function App() {
   return (
     <>
       <PAGETITLE />
-      <COPYRIGHT />
+      <CopyRight />
       <div className="app-bg">
         <QUOTEBOX />
       </div>
